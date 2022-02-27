@@ -30,7 +30,12 @@ app.get("/api/hello", function (req, res) {
 app.get('/api/:id', (req, res)=>{
   const input = req.params.id
   let date =new Date(input)
- 
+
+
+  // if unix code is passed  date will be => Invalid Date
+  if(!date?.getDate()){
+    date = new Date(Number(input))
+  }
  
   let uctDate = date.toUTCString()
 
